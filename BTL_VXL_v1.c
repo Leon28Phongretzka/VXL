@@ -6,6 +6,7 @@
 
 
 int mang[9] = {0X00, 0X01, 0X03, 0X07, 0X0F, 0X1F, 0X3F, 0X7F, 0XFF};
+int mang_2[9] = {0X00, 0X80, 0XC0, 0XE0, 0XF0, 0XF8, 0XFC, 0XFE, 0XFF};
 int i;
 
 void Config(void);
@@ -43,22 +44,22 @@ int main()
 		
 		for(i=8; i>=0; i--)
 		{
-			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
+			Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
 			Delay(100);
 		}
 		for(i=7; i>=0; i--)
 		{
-			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
+            Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
 			Delay(100);
 		}
 		for(i=7; i>=0; i--)
 		{
-			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
+			Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
 			Delay(100);
 		}
 		for(i=7; i>=0; i--)
 		{
-			Send_4_Byte(mang[i], 0X00, 0X00, 0X00);
+			Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
 			Delay(100);
 		}		
 	}		
