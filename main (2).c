@@ -16,47 +16,10 @@ int main(void)
 	Config();
 	while(1)
 	{
-		for(i=0; i<9; i++)
-		{
-			Write_4_Byte(mang[i],0X00, 0X00, 0X00);
-			Delay(100);
-		}
-		for(i=1; i<9; i++)
-		{
-			Write_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(100);
-		}
-		for(i=1; i<9; i++)
-		{
-			Write_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(100);
-		}
-		for(i=1; i<9; i++)
-		{
-			Write_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(100);
-		}
-		
-		for(i=8; i>=0; i--)
-		{
-			Write_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(100);
-		}
-		for(i=7; i>=0; i--)
-		{
-			Write_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(100);
-		}
-		for(i=7; i>=0; i--)
-		{
-			Write_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(100);
-		}
-		for(i=7; i>=0; i--)
-		{
-			Write_4_Byte(mang[i], 0X00, 0X00, 0X00);
-			Delay(100);
-		}		
+	Write_4byte(0xAAAAAAAA);
+		Delay(100);
+	Write_4byte(0x55555555);		
+		Delay(100);
 	}
 	return 0;
 }
