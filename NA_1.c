@@ -23,43 +23,43 @@ int main()
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(mang[i],0X00, 0X00, 0X00);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(100);
+			Delay(1000);
 		}
 		
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(100);
+			Delay(1000);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(mang[i], 0X00, 0X00, 0X00);
-			Delay(100);
+			Delay(1000);
 		}		
 	}		
 }

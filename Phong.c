@@ -11,8 +11,6 @@ void Config(void);
 void Delay(uint16_t Time);
 void Send_1_Byte(int dulieu);
 void Send_4_Byte(int dulieu1, int dulieu2, int dulieu3, int dulieu4);
-void Write_4byte(uint32_t CMD);
-
 int main(void)
 {
 	Config();
