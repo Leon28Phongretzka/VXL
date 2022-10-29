@@ -88,6 +88,7 @@ int main()
 			Delay(50);
 		} 
 		// Hieu ung Butterfly
+		// 1. Sang dan
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(butterfly_eff1[i],0X00, 0X00, butterfly_eff2[i]);
@@ -98,6 +99,7 @@ int main()
 			Send_4_Byte(0xFF,butterfly_eff1[i], butterfly_eff2[i], 0xFF);
 			Delay(50);
 		}
+		// 2. Tat dan tu ngoai vao trong
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(butterfly_eff2[i],0xFF, 0xFF, butterfly_eff1[i]);
@@ -108,6 +110,7 @@ int main()
 			Send_4_Byte(0X00,butterfly_eff2[i], butterfly_eff1[i], 0X00);
 			Delay(50);
 		}
+		// 3. Sang dan tro lai
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(butterfly_eff1[i],0X00, 0X00, butterfly_eff2[i]);
@@ -118,14 +121,15 @@ int main()
 			Send_4_Byte(0xFF,butterfly_eff1[i], butterfly_eff2[i], 0xFF);
 			Delay(50);
 		}
+		// 4. Tat dan tu trong ra ngoai
 		for(i=8; i>=0; i--)
 		{
-			Send_4_Byte(0X00,butterfly_eff1[i], butterfly_eff2[i], 0X00);
+			Send_4_Byte(0XFF,butterfly_eff1[i], butterfly_eff2[i], 0XFF);
 			Delay(50);
 		}
-		for(i=8; i>=0; i--)
+		for(i=7; i>=0; i--)
 		{
-			Send_4_Byte(butterfly_eff1[i],0xFF, 0xFF, butterfly_eff2[i]);
+			Send_4_Byte(butterfly_eff1[i],0x00, 0x00,butterfly_eff2[i]);
 			Delay(50);
 		}
 	}		
