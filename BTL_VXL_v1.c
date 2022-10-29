@@ -28,85 +28,105 @@ int main()
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(mang[i],0X00, 0X00, 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(30);
+			Delay(50);
 		}
 		
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=7; i>=0; i--)
 		{
             Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
-			Delay(30);
+			Delay(50);
 		}
 		// Hieu ung Snake
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(snake_eff[i],0X00, 0X00, 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0X00, snake_eff[i], 0X00, 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0X00, 0X00, snake_eff[i], 0X00);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0X00, 0X00, 0X00, snake_eff[i]);
-			Delay(30);
+			Delay(50);
 		} 
 		// Hieu ung Butterfly
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(butterfly_eff1[i],0X00, 0X00, butterfly_eff2[i]);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(0xFF,butterfly_eff1[i], butterfly_eff2[i], 0xFF);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(butterfly_eff2[i],0xFF, 0xFF, butterfly_eff1[i]);
-			Delay(30);
+			Delay(50);
 		}
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(0X00,butterfly_eff2[i], butterfly_eff1[i], 0X00);
-			Delay(30);
+			Delay(50);
+		}
+		for(i=0; i<9; i++)
+		{
+			Send_4_Byte(butterfly_eff1[i],0X00, 0X00, butterfly_eff2[i]);
+			Delay(50);
+		}
+		for(i=0; i<9; i++)
+		{
+			Send_4_Byte(0xFF,butterfly_eff1[i], butterfly_eff2[i], 0xFF);
+			Delay(50);
+		}
+		for(i=8; i>=0; i--)
+		{
+			Send_4_Byte(0X00,butterfly_eff1[i], butterfly_eff2[i], 0X00);
+			Delay(50);
+		}
+		for(i=8; i>=0; i--)
+		{
+			Send_4_Byte(butterfly_eff1[i],0xFF, 0xFF, butterfly_eff2[i]);
+			Delay(50);
 		}
 	}		
 }
@@ -117,7 +137,7 @@ void Config(void)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
 	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;
 	GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_30MHz;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
