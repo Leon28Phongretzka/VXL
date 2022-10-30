@@ -91,12 +91,12 @@ int main()
 		// 1. Sang dan
 		for(i=0; i<9; i++)
 		{
-			Send_4_Byte(butterfly_eff1[i],0X00, 0X00, butterfly_eff2[i]);
+			Send_4_Byte(0X00, butterfly_eff2[i], butterfly_eff1[i], 0X00);
 			Delay(50);
 		}
 		for(i=0; i<9; i++)
 		{
-			Send_4_Byte(0xFF,butterfly_eff1[i], butterfly_eff2[i], 0xFF);
+			Send_4_Byte(butterfly_eff2[i],0xFF,0xFF,butterfly_eff1[i]);
 			Delay(50);
 		}
 		// 2. Tat dan tu ngoai vao trong
