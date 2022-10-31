@@ -1,29 +1,28 @@
 #include<stdio.h>
 #include<math.h>
+#include<string.h>
 int main()
 {
-    char text[100];
-    int key;
-    gets(text);
-    scanf("%d", &key);
-    // Ceasar Cipher Encryption
-    for(int i = 0; text[i] != '\0'; ++i){
-        char ch = text[i];
-        if(ch >= 'a' && ch <= 'z'){
-            ch = ch + key;
-            if(ch > 'z'){
-                ch = ch - 'z' + 'a' - 1;
+    char text[2049]; scanf("%s",text);
+    // Ceasar Cipher Encryption with key from 0 to 25
+    for(int i=0; i<26; i++)
+    {
+        printf("Key %d: ", i);
+        for(int j=0; j<strlen(text); j++)
+        {
+            if(text[j] >= 'A' && text[j] <= 'Z')
+            {
+                printf("%c", (text[j] - 'A' + i) % 26 + 'A');
             }
-            text[i] = ch;
-        }
-        else if(ch >= 'A' && ch <= 'Z'){
-            ch = ch + key;
-            if(ch > 'Z'){
-                ch = ch - 'Z' + 'A' - 1;
+            else if(text[j] >= 'a' && text[j] <= 'z')
+            {
+                printf("%c", (text[j] - 'a' + i) % 26 + 'a');
             }
-            text[i] = ch;
+            else
+            {
+                printf("%c", text[j]);
+            }
         }
+        printf("\n");
     }
-    printf("%s", text);
-    return 0;
 }
