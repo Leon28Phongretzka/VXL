@@ -63,7 +63,16 @@ void configTIM()
 
 void control(uint8_t x, uint8_t n)	// bat tat LEDx, n=1 bat, n=0 tat
 {
-	
+    if(x<16)
+    {
+        if(n==0) GPIO_ResetBits(GPIOA, 1<<x);
+        else GPIO_SetBits(GPIOA, 1<<x);
+    }
+    else
+    {
+        if(n==0) GPIO_ResetBits(GPIOB, 1<<(x-16));
+        else GPIO_SetBits(GPIOB, 1<<(x-16));
+    }
 }
 
 void PWM()

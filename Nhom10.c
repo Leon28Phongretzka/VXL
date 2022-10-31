@@ -92,7 +92,8 @@ void PWM()
 		if(TIM2->CNT < arr[i]*flag[i])
 		{
 			control(i,1);
-		} else
+		} 
+		else
 		{
 			control(i,0);
 		}
