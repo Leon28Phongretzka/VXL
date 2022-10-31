@@ -1,9 +1,8 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-int main()
+void Ceasar_Cipher_Encrypt(char *text)
 {
-    char text[2049]; scanf("%s",text);
     // Ceasar Cipher Encryption with key from 0 to 25
     for(int i=0; i<26; i++)
     {
@@ -25,4 +24,11 @@ int main()
         }
         printf("\n");
     }
+}
+int main()
+{
+    char text[2049]; scanf("%s",text);
+    // Ceasar Cipher Encryption with key from 0 to 25
+    Ceasar_Cipher_Encrypt(text);
+    
 }
