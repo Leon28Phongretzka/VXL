@@ -1,1 +1,1 @@
-{"name":"Local: BTL_VXL_2","url":"d:\\4.Code\\ASG\\BTL_VXL_2.c","tests":[{"id":1667101768529,"input":"abcdefg","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\4.Code\\ASG\\BTL_VXL_2.c","group":"local","local":true}
+{"name":"Local: BTL_VXL_2","url":"d:\\4.Code\\ASG\\BTL_VXL_2.c","tests":[{"id":1667101768529,"input":"abcdefgz","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\4.Code\\ASG\\BTL_VXL_2.c","group":"local","local":true}

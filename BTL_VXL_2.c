@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<math.h>
 #include<string.h>
-void Ceasar_Cipher_Encrypt(char *text)
+void Ceasar_Cipher_Decrypt(char *text)
 {
-    // Ceasar Cipher Encryption with key from 0 to 25
+    // Ceasar Cipher Decryption with key from 0 to 25
     for(int i=0; i<26; i++)
     {
         printf("Key %d: ", i);
@@ -11,11 +11,11 @@ void Ceasar_Cipher_Encrypt(char *text)
         {
             if(text[j] >= 'A' && text[j] <= 'Z')
             {
-                printf("%c", (text[j] - 'A' + i) % 26 + 'A');
+                printf("%c", (text[j] - 'A' - i + 26) % 26 + 'A');
             }
             else if(text[j] >= 'a' && text[j] <= 'z')
             {
-                printf("%c", (text[j] - 'a' + i) % 26 + 'a');
+                printf("%c", (text[j] - 'a' - i + 26) % 26 + 'a');
             }
             else
             {
@@ -25,10 +25,40 @@ void Ceasar_Cipher_Encrypt(char *text)
         printf("\n");
     }
 }
+void Ceasar_Cipher_Decrypt_Toupper(char *text)
+{
+    // Ceasar Cipher Decryption with key from 0 to 25
+    for(int i=0; i<26; i++)
+    {
+        printf("Key %d: ", i);
+        for(int j=0; j<strlen(text); j++)
+        {
+            if(text[j] >= 'A' && text[j] <= 'Z')
+            {
+                printf("%c", (text[j] - 'A' - i + 26) % 26 + 'A');
+            }
+            else if(text[j]==' ')
+            {
+                printf("%c", text[j]);
+            }
+        }
+        printf("\n");
+    }
+
+}
 int main()
 {
     char text[2049]; scanf("%s",text);
-    // Ceasar Cipher Encryption with key from 0 to 25
-    Ceasar_Cipher_Encrypt(text);
-    
+    // Ceasar Cipher Decryption with key from 0 to 25
+    Ceasar_Cipher_Decrypt(text);
+    // toupper text
+    for(int i=0; i<strlen(text); i++)
+    {
+        if(text[i] >= 'a' && text[i] <= 'z')
+        {
+            text[i] = text[i] - 'a' + 'A';
+        }
+    }
+    // Ceasar Cipher Decryption Toupper with key from 0 to 25
+    Ceasar_Cipher_Decrypt_Toupper(text);
 }

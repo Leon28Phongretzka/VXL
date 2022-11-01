@@ -12,10 +12,10 @@ void configGPIO()	//A0->11	B01-56-89
 {
 	RCC->APB2ENR |= (3 << 2);		// ENABLE PORT A & B
 	/* config port A */
-	GPIOA->CRL   &= 0x00000000;
-	GPIOA->CRL   |= 0x33333333;
-	GPIOA->CRH	 &= 0xffff0000;
-	GPIOA->CRH	 |= 0x00003333;
+	GPIOA->CRL   &= 0x00000000;		// reset
+	GPIOA->CRL   |= 0x33333333;		// output push-pull
+	GPIOA->CRH	 &= 0xffff0000;	    // reset
+	GPIOA->CRH	 |= 0x00003333;		// output push-pull
 	
 	/* config port B */
 	GPIOB->CRL   &= 0xf00fff00;
@@ -36,8 +36,8 @@ void configTIM()
 	
 	/* config TIM 3 */  
 	RCC->APB1ENR |= (1 << 1);		// kich hoat TIM2
-	TIM3->ARR = 0xFFFF;		// gia tri dem tran
-	TIM3->PSC = 7200 - 1;		// chia tan 72MHz -> 10Khz
+	TIM3->ARR = 199;		// gia tri dem tran
+	TIM3->PSC = 72 - 1;		// chia tan 72MHz -> 10Khz
 	TIM3->CR1 = 0x01;		// kich hoat bo dem, dem len
 	TIM3->EGR = 0x01;		// su kien reload   
 	
@@ -89,14 +89,14 @@ void PWM()
 {
 	for(i = 0; i<18; i++)
 	{
-		if(TIM2->CNT < arr[i]*flag[i])
+		if(TIM2->CNT < arr[i]*flag[i]) // neu thoi gian hien tai nho hon thoi gian pha cao thi bat led
 		{
-			control(i,1);
-		} 
-		else
+			control(i, 1);
+		} else
 		{
-			control(i,0);
+			control(i, 0);
 		}
+		
 	}
 }
 
@@ -116,7 +116,6 @@ int main()
 	while(1)
 	{
 		PWM();
-		
 		if(TIM3->CNT > timeDelay)		// hieu ung sang dan tu led 0 -> led 17
 		{
 			if(k==0) // hieu ung sang dan tu led 0 -> led 17
@@ -128,7 +127,7 @@ int main()
 			}
 			if(j > 17) k = 1;
 			if(j < 0) k = 0;
-			TIM3->CNT = 0;
+			TIM3->CNT = 0; // reset bo dem
 		} 
 		
 	}
