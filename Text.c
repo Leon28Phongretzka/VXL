@@ -7,14 +7,14 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
         str     r0, [sp, #8]                            // store the key in the stack
         b       .LBB0_1                                 // jump to the loop 1
 
-.LBB0_1:                                                // loop 1 - it means "for(int i=0; i<26; i++)"
-        ldr     r0, [sp, #8]                            // load the key from the stack
+.LBB0_1:                                                // loop 1 - it means "for(int i=0; i<26;)"
+        ldr     r0, [sp, #8]                            // load the key ( index i ) from the stack
         cmp     r0, #25                                 // compare the key to 25
         bgt     .LBB0_16                                // if the key is greater than 25, jump to the end
-        b       .LBB0_2                                 // jump to the loop 2
+        b       .LBB0_2                                 // jump to the loop 2 
 
 .LBB0_2:                                                // loop 2 - it prints the key
-        ldr     r1, [sp, #8]                            // load the key from the stack
+        ldr     r1, [sp, #8]                            // load the key from the stack ( r1 = i )
         ldr     r0, .LCPI0_0                            // load the string "Key %d: " into r0
         bl      printf                                  // call the printf function to printf "Key %d: "
         mov     r0, #0                                  // set the index to 0
@@ -22,14 +22,14 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
         b       .LBB0_3                                 // jump to the loop 3
 
 .LBB0_3:                                                // loop 3 - it means "for(int j=0; j<strlen(text);)""
-        ldr     r0, [sp, #4]                            // load the index from the stack
+        ldr     r0, [sp, #4]                            // load the index j from the stack
         str     r0, [sp]                                // store the index in the stack
         ldr     r0, [r11, #-4]                          // load the string from the stack
         bl      strlen                                  // call the strlen ( string_length ) function to get the length of the string - with this problem this is 2048
         mov     r1, r0                                  // move the length of the string into r1
-        ldr     r0, [sp]                                // load the index from the stack
-        cmp     r0, r1                                  // compare the index to the length of the string
-        bhs     .LBB0_14                                // if the index is greater than or equal to the length of the string, jump to the end
+        ldr     r0, [sp]                                // load the index j from the stack
+        cmp     r0, r1                                  // compare the index j to the length of the string
+        bhs     .LBB0_14                                // if the index j is greater than or equal to the length of the string, jump to the end
         b       .LBB0_4                                 // jump to the loop 4
 
 .LBB0_4:                                                // loop 4 - it means "if(text[j] >= 'A')"
@@ -48,7 +48,7 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
         bgt     .LBB0_7                                 // if the character is greater than 'Z', jump to the loop 7
         b       .LBB0_6                                 // jump to the loop 6
 
-.LBB0_6:                                                // loop 6 - it means "text[j] = ((text[j] - 'A') - key) % 26 + 'A'"
+.LBB0_6:                                                // loop 6 - it means "text[j] = (text[j] - 'A') - key + 26) % 26 + 'A'"
         ldr     r1, [sp, #4]                            // load the index from the stack to r1
         ldrb    r0, [r0, r1]                            // load each character from the string at the index to r0
         ldr     r1, [sp, #8]                            // load the key from the stack to r1
@@ -127,7 +127,7 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
         bl      printf                                  // call the printf function to printf "\n"
         b       .LBB0_15                                // jump to the loop 15
 
-.LBB0_15:                                               // loop 15 - it means increase the index i and jump to the loop 1 to continue search in the string
+.LBB0_15:                                               // loop 15 - i++ - increase the index i and jump to the loop 1 to continue search in the array of strings
         ldr     r0, [sp, #8]                            // load the key from the stack
         add     r0, r0, #1                              // increment the key
         str     r0, [sp, #8]                            // store the key in the stack
@@ -145,6 +145,23 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
         .long   .L.str.1
 .LCPI0_3:
         .long   1321528399                      @ 0x4ec4ec4f
+main:
+        push    {r4, r5, r11, lr}                       // push the r4, r5, r11 and the lr to the stack
+        add     r11, sp, #8                             // move the stack pointer to the r11
+        sub     sp, sp, #8                              // decrease the stack pointer by 8 bytes
+        sub     sp, sp, #2048                           // decrease the stack pointer by 2048 bytes
+        ldr     r0, .LCPI1_0                            // load LCPI1_0 into r0 - i.e. r0 = "Enter the key: "
+        add     r1, sp, #7                              // move the stack pointer to the r1
+        str     r1, [sp]                                // store the r1 in the stack
+        bl      scanf                                   // call the scanf function to scanf "Enter the key: "
+        ldr     r0, [sp]                                // load the key from the stack
+        bl      Ceasar_Cipher_Decrypt                   // call the Ceasar_Cipher_Decrypt function to decrypt the strings with the key
+        mov     r0, #0                                  // r0 = 0
+        sub     sp, r11, #8                             // move the stack pointer to the r11
+        pop     {r4, r5, r11, lr}                       // pop the r4, r5, r11 and the lr from the stack - end the function
+        bx      lr                                      // return from the function
+.LCPI1_0:
+        .long   .L.str.3
 .L.str:
         .asciz  "Key %d: "
 
@@ -153,3 +170,6 @@ Ceasar_Cipher_Decrypt:                                  // Call the function
 
 .L.str.2:
         .asciz  "\n"
+
+.L.str.3:
+        .asciz  "%s"
