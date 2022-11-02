@@ -160,7 +160,7 @@ void Send_1_Byte(int dulieu)
 	int k;
 	for(k=1; k <= 8; k++ )// Ghi va dich du lieu
 	{
-		GPIO_WriteBit(GPIOA,DATA,(dulieu >> (8 - k)) & 1);
+		GPIO_WriteBit(GPIOA,DATA,(dulieu >> (8 - k)) & 1);	
 		GPIO_WriteBit(GPIOA,CLOCK,0);
 		GPIO_WriteBit(GPIOA,CLOCK,1);
 	}
