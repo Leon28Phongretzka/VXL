@@ -24,48 +24,48 @@ int main()
 	Config();
 	while(1)
 	{
-		// // Sang dan va tat dan tu den dau tien toi den cuoi cung
-		// for(i=0; i<9; i++)
-		// {
-		// 	Send_4_Byte(mang[i],0X00, 0X00, 0X00);
-		// 	Delay(50);
-		// }
-		// for(i=1; i<9; i++)
-		// {
-		// 	Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-		// 	Delay(50);
-		// }
-		// for(i=1; i<9; i++)
-		// {
-		// 	Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-		// 	Delay(50);
-		// }
-		// for(i=1; i<9; i++)
-		// {
-		// 	Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-		// 	Delay(50);
-		// }
+		// Sang dan va tat dan tu den dau tien toi den cuoi cung
+		for(i=0; i<9; i++)
+		{
+			Send_4_Byte(mang[i],0X00, 0X00, 0X00);
+			Delay(50);
+		}
+		for(i=1; i<9; i++)
+		{
+			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
+			Delay(50);
+		}
+		for(i=1; i<9; i++)
+		{
+			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
+			Delay(50);
+		}
+		for(i=1; i<9; i++)
+		{
+			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
+			Delay(50);
+		}
 		
-		// for(i=8; i>=0; i--)
-		// {
-		// 	Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
-		// 	Delay(50);
-		// }
-		// for(i=7; i>=0; i--)
-		// {
-        //     Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
-		// 	Delay(50);
-		// }
-		// for(i=7; i>=0; i--)
-		// {
-		// 	Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
-		// 	Delay(50);
-		// }
-		// for(i=7; i>=0; i--)
-		// {
-		// 	Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
-		// 	Delay(50);
-		// }
+		for(i=8; i>=0; i--)
+		{
+			Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
+			Delay(50);
+		}
+		for(i=7; i>=0; i--)
+		{
+            Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
+			Delay(50);
+		}
+		for(i=7; i>=0; i--)
+		{
+			Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
+			Delay(50);
+		}
+		for(i=7; i>=0; i--)
+		{
+			Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
+			Delay(50);
+		}
 		// Hieu ung Snake
 		for(i=0; i<8; i++)
 		{
