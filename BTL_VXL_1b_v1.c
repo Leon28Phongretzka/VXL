@@ -7,7 +7,7 @@
 
 int mang[9] = {0X00, 0X01, 0X03, 0X07, 0X0F, 0X1F, 0X3F, 0X7F, 0XFF};
 int mang_2[9] = {0X00, 0X80, 0XC0, 0XE0, 0XF0, 0XF8, 0XFC, 0XFE, 0XFF};
-int snake_eff[9]={0X00, 0X01, 0X02, 0X04, 0X08, 0X10, 0X20, 0X40, 0X80};
+int snake_eff[9]={0X01, 0X03, 0X06, 0X0C, 0X18, 0X30, 0X60, 0XC0, 0X80};
 int butterfly_eff1[9]={0X00, 0X01, 0X03, 0X07, 0X0F, 0X1F, 0X3F, 0X7F, 0XFF};
 int butterfly_eff2[9]={0X00, 0X80, 0XC0, 0XE0, 0XF0, 0XF8, 0XFC, 0XFE, 0XFF};
 int i;
@@ -24,65 +24,71 @@ int main()
 	Config();
 	while(1)
 	{
-		// Sang dan va tat dan tu den dau tien toi den cuoi cung
-		for(i=0; i<9; i++)
-		{
-			Send_4_Byte(mang[i],0X00, 0X00, 0X00);
-			Delay(50);
-		}
-		for(i=1; i<9; i++)
-		{
-			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(50);
-		}
-		for(i=1; i<9; i++)
-		{
-			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(50);
-		}
-		for(i=1; i<9; i++)
-		{
-			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(50);
-		}
+		// // Sang dan va tat dan tu den dau tien toi den cuoi cung
+		// for(i=0; i<9; i++)
+		// {
+		// 	Send_4_Byte(mang[i],0X00, 0X00, 0X00);
+		// 	Delay(50);
+		// }
+		// for(i=1; i<9; i++)
+		// {
+		// 	Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
+		// 	Delay(50);
+		// }
+		// for(i=1; i<9; i++)
+		// {
+		// 	Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
+		// 	Delay(50);
+		// }
+		// for(i=1; i<9; i++)
+		// {
+		// 	Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
+		// 	Delay(50);
+		// }
 		
-		for(i=8; i>=0; i--)
-		{
-			Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
-			Delay(50);
-		}
-		for(i=7; i>=0; i--)
-		{
-            Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
-			Delay(50);
-		}
-		for(i=7; i>=0; i--)
-		{
-			Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
-			Delay(50);
-		}
-		for(i=7; i>=0; i--)
-		{
-			Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
-			Delay(50);
-		}
+		// for(i=8; i>=0; i--)
+		// {
+		// 	Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
+		// 	Delay(50);
+		// }
+		// for(i=7; i>=0; i--)
+		// {
+        //     Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
+		// 	Delay(50);
+		// }
+		// for(i=7; i>=0; i--)
+		// {
+		// 	Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
+		// 	Delay(50);
+		// }
+		// for(i=7; i>=0; i--)
+		// {
+		// 	Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
+		// 	Delay(50);
+		// }
 		// Hieu ung Snake
-		for(i=0; i<9; i++)
+		for(i=0; i<8; i++)
 		{
 			Send_4_Byte(snake_eff[i],0X00, 0X00, 0X00);
 			Delay(50);
 		}
-		for(i=1; i<9; i++)
+		Send_4_Byte(0X80, snake_eff[0], 0X00, 0X00);
+		Delay(50);
+		for(i=1; i<8; i++)
 		{
 			Send_4_Byte(0X00, snake_eff[i], 0X00, 0X00);
 			Delay(50);
 		}
-		for(i=1; i<9; i++)
+		Send_4_Byte(0X00, 0X80, snake_eff[0], 0X00);
+		Delay(50);
+		for(i=1; i<8; i++)
 		{
 			Send_4_Byte(0X00, 0X00, snake_eff[i], 0X00);
 			Delay(50);
 		}
-		for(i=1; i<9; i++)
+		Send_4_Byte(0X00, 0X00, 0X80, snake_eff[0]);
+		Delay(50);
+		for(i=1; i<8; i++)
 		{
 			Send_4_Byte(0X00, 0X00, 0X00, snake_eff[i]);
 			Delay(50);
@@ -139,7 +145,7 @@ void Config(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;
+	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_PP;		
 	GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -160,12 +166,12 @@ void Send_1_Byte(int dulieu)
 	int k;
 	for(k=1; k <= 8; k++ )// Ghi va dich du lieu
 	{
-		GPIO_WriteBit(GPIOA,DATA,(dulieu >> (8 - k)) & 1);	
-		GPIO_WriteBit(GPIOA,CLOCK,0);
-		GPIO_WriteBit(GPIOA,CLOCK,1);
-	}
-		GPIO_WriteBit(GPIOA,DATA_LOCK,0);
-		GPIO_WriteBit(GPIOA,DATA_LOCK,1);
+		GPIO_WriteBit(GPIOA,DATA,(dulieu >> (8 - k)) & 1);	// Dịch dữ liệu sang phải 8-k bit và lấy bit cuối cùng
+		GPIO_WriteBit(GPIOA,CLOCK,0);						// Xuat xung Clock 0 để ghi dữ liệu
+		GPIO_WriteBit(GPIOA,CLOCK,1);						// Xuat xung Clock 1 để ghi dữ liệu
+	}	
+	GPIO_WriteBit(GPIOA,DATA_LOCK,0);						// 
+	GPIO_WriteBit(GPIOA,DATA_LOCK,1);
 }
 
 void Send_4_Byte(int dulieu1, int dulieu2, int dulieu3, int dulieu4)
