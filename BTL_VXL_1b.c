@@ -7,9 +7,15 @@
 
 int mang[9] = {0X00, 0X01, 0X03, 0X07, 0X0F, 0X1F, 0X3F, 0X7F, 0XFF};
 int mang_2[9] = {0X00, 0X80, 0XC0, 0XE0, 0XF0, 0XF8, 0XFC, 0XFE, 0XFF};
+
 int snake_eff[9]={0X01, 0X03, 0X06, 0X0C, 0X18, 0X30, 0X60, 0XC0, 0X80};
+
+
 int butterfly_eff1[9]={0X00, 0X01, 0X03, 0X07, 0X0F, 0X1F, 0X3F, 0X7F, 0XFF};
 int butterfly_eff2[9]={0X00, 0X80, 0XC0, 0XE0, 0XF0, 0XF8, 0XFC, 0XFE, 0XFF};
+
+
+
 int i;
 
 void Config(void);
@@ -24,49 +30,49 @@ int main()
 	Config();
 	while(1)
 	{
-		// Sang dan va tat dan tu den dau tien toi den cuoi cung
+		// Sang dan tu den dau tien toi den cuoi cung								
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(mang[i],0X00, 0X00, 0X00);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, mang[i], 0X00, 0X00);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, mang[i], 0X00);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0XFF, 0XFF, 0XFF, mang[i]);
-			Delay(50);
+			Delay(75);
 		}
-		
+		// Tat dan tu led dau tien toi led cuoi cung				
 		for(i=8; i>=0; i--)
 		{
 			Send_4_Byte(mang_2[i], 0XFF, 0XFF, 0XFF);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=7; i>=0; i--)
 		{
             Send_4_Byte(0X00, mang_2[i], 0XFF, 0XFF);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0X00, 0X00, mang_2[i], 0XFF);
-			Delay(50);
+			Delay(75);
 		}
 		for(i=7; i>=0; i--)
 		{
 			Send_4_Byte(0X00, 0X00, 0X00, mang_2[i]);
-			Delay(50);
+			Delay(75);
 		}
-		// Hieu ung Snake
+		// Hieu ung Snake											
 		for(i=0; i<8; i++)
 		{
 			Send_4_Byte(snake_eff[i],0X00, 0X00, 0X00);
@@ -88,13 +94,13 @@ int main()
 		}
 		Send_4_Byte(0X00, 0X00, 0X80, snake_eff[0]);
 		Delay(50);
-		for(i=1; i<8; i++)
+		for(i=1; i<9; i++)
 		{
 			Send_4_Byte(0X00, 0X00, 0X00, snake_eff[i]);
 			Delay(50);
 		} 
 		// Hieu ung Butterfly
-		// 1. Sang dan
+		// 1. Sang dan															
 		for(i=0; i<9; i++)
 		{
 			Send_4_Byte(0X00, butterfly_eff2[i], butterfly_eff1[i], 0X00);
